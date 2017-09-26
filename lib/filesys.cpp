@@ -689,7 +689,9 @@ static int boinc_rename_aux(const char* old, const char* newf) {
 #ifdef __APPLE__
         // system() is deprecated in Mac OS 10.10.
         // Apple says to call posix_spawn instead.
-        retval = callPosixSpawn(buf);
+        //On our mac it does not build when we use posix_spawn. 
+        //retval = callPosixSpawn(buf);
+        retval = system(buf);
 #else
         retval = system(buf);
 #endif
